@@ -14,32 +14,49 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       Description: Hello World REST API
-      Name: hello-world-api
       StageName: test
 
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/functions/hello-world/
+      CodeUri: functions/dist/hello-world
+      Layers:
+        - Ref: NpmLayer
+        - Ref: LibsLayer
       Events:
-        HelloWorldApiEvent:
+        ApiEvent:
           Type: Api
           Properties:
             Path: /hello
             Method: get
             RestApiId:
               Ref: HelloWorldApi
+
+  NpmLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: lambda_layers/npm-layer
+      CompatibleArchitectures:
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
     Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: "es2020"
-        EntryPoints:
-          - index.ts
+      BuildMethod: nodejs16.x
+
+  LibsLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: lambda_layers/libs-layer
+      CompatibleArchitectures:
+        - x86_64
+      CompatibleRuntimes:
+        - nodejs16.x
+    Metadata:
+      BuildMethod: nodejs16.x
 
 Outputs:
   HelloWorldApi:
-    Value: !Sub "https://${HelloWorldApi}.execute-api.${AWS::Region}.amazonaws.com/test/hello/"
+    Value: !Sub "https://${HelloWorldApi}.execute-api.${AWS::Region}.amazonaws.com/test/hello"
   HelloWorldFunction:
     Value: !GetAtt HelloWorldFunction.Arn
   HelloWorldFunctionIamRole:

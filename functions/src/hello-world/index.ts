@@ -1,5 +1,6 @@
-// functions/hello-world/index.ts
-import { getGlobalIp } from "../../layers/utils";
+// hello-world/index.ts
+import { getGlobalIp } from "libs/utils";
+
 import type {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
@@ -15,7 +16,7 @@ export const handler = async (
     path: event.path,
     logStreamName: context.logStreamName,
     message: "Hello World",
-    globalIp: await getGlobalIp(),
+    ip: await getGlobalIp(),
   };
   const headers = {
     "X-Custom-Header": "My custom value",

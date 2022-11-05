@@ -5,11 +5,11 @@
 export default {
   collectCoverageFrom: [
     //
-    "src/functions/hello-world/index.ts",
+    "functions/src/hello-world/index.ts",
   ],
   testMatch: [
     //
-    "<rootDir>/src/tests/unit/hello-world.spec.ts",
+    "<rootDir>/functions/src/__tests__/unit/hello-world.spec.ts",
   ],
 
   // All imported modules in your tests should be mocked automatically

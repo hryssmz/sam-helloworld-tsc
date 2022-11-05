@@ -1,5 +1,5 @@
-// tests/unit/hello-world.spec.ts
-import { handler } from "../../functions/hello-world";
+// __tests__/unit/hello-world.spec.ts
+import { handler } from "../../hello-world";
 import { getContext } from "../utils/contexts";
 import { getApigwEvent } from "../utils/events";
 

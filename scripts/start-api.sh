@@ -6,4 +6,4 @@ sam local start-api \
     --port 13002 \
     --container-host 172.17.0.1 \
     --container-host-interface 0.0.0.0 \
-    --docker-volume-basedir ${BASEDIR}/.aws-sam/build
+    --docker-volume-basedir "${BASEDIR}/.aws-sam/build"

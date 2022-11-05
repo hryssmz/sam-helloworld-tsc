@@ -1,4 +1,4 @@
-// tests/utils/contexts.ts
+// __tests__/utils/contexts.ts
 import type { Context } from "aws-lambda";
 
 export function getContext() {

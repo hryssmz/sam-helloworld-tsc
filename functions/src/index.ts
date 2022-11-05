@@ -1,7 +1,7 @@
 // index.ts
-import { handler } from "./functions/hello-world";
-import { getContext } from "./tests/utils/contexts";
-import { getApigwEvent } from "./tests/utils/events";
+import { handler } from "./hello-world";
+import { getContext } from "./__tests__/utils/contexts";
+import { getApigwEvent } from "./__tests__/utils/events";
 
 async function main() {
   const apigwEvent = getApigwEvent();

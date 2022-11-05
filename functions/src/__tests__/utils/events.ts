@@ -1,4 +1,4 @@
-// tests/utils/events.ts
+// __tests__/utils/events.ts
 import type { APIGatewayProxyEvent } from "aws-lambda";
 
 export function getApigwEvent() {

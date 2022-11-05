@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-functions": "sh scripts/build-functions.sh",
+    "build-npm-layer": "sh scripts/build-npm-layer.sh",
+    "build-libs-layer": "sh scripts/build-libs-layer.sh",
+    "dev": "ts-node functions/src/index.ts",
     "invoke": "sh scripts/invoke.sh",
-    "lint": "tsc --noEmit && eslint --max-warnings=0 .",
-    "start": "ts-node src/index.ts",
+    "lint": "sh scripts/lint.sh",
+    "prepare": "sh scripts/prepare.sh",
+    "start": "node functions/dist/index.js",
     "start-api": "sh scripts/start-api.sh",
     "test": "jest -i -o --coverage=false",
     "test-cov": "jest -i"
