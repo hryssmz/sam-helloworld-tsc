@@ -2,16 +2,14 @@
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
+import { apiPrefix } from "./tests/utils";
 export default {
-  collectCoverageFrom: [
-    "functions/hello-axios/src/index.ts",
-    "functions/hello-layer/src/index.ts",
-    "functions/hello-world/src/index.ts",
-  ],
   testMatch: [
-    "<rootDir>/tests/unit/hello-axios.spec.ts",
-    "<rootDir>/tests/unit/hello-layer.spec.ts",
-    "<rootDir>/tests/unit/hello-world.spec.ts",
+    "<rootDir>/tests/integration/hello-axios.spec.ts",
+    "<rootDir>/tests/integration/hello-world.spec.ts",
+    ...(apiPrefix.includes("_user_request_")
+      ? []
+      : ["<rootDir>/tests/integration/hello-layer.spec.ts"]),
   ],
 
   // All imported modules in your tests should be mocked automatically
@@ -27,13 +25,13 @@ export default {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  // coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -41,7 +39,7 @@ export default {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  // coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -53,14 +51,6 @@ export default {
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
